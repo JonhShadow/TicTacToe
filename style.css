@@ -125,20 +125,30 @@ nav h1 {
   list-style: none;
 }
 
-.draw ul {
+.draw ul,
+.win ul {
   display: flex;
   font-size: 10rem;
 }
 
-.draw .cross {
+.draw .cross,
+.win .cross {
   font-size: 13rem;
 }
 
-.draw li {
+.draw li,
+.win li {
   padding: 2rem 0.5rem 0rem 0.5rem;
 }
 
-.draw h2 {
+.win ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draw h2,
+.win h2 {
   display: flex;
   justify-content: center;
   align-items: center;
