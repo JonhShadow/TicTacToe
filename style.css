@@ -1,0 +1,183 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; /* logo 1rem = 10px */
+}
+
+:root {
+  --color: #0da192;
+  --Xcolor: #545454;
+  --Ccolor: #f2ebd3;
+}
+
+body {
+  background-image: linear-gradient(120deg, #14bdac, #14bdac);
+  color: var(--Ccolor);
+  font-family: "Lato", sans-serif;
+  min-height: 100vh;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav h1 {
+  padding: 3rem;
+  font-size: 5rem;
+  text-shadow: 2px 2px 5px rgb(3, 82, 78);
+}
+
+.game {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 60rem;
+  height: 60rem;
+  /*border: 0.1rem solid rgb(0, 83, 104);*/
+  margin-top: 5rem;
+}
+
+.game ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: auto;
+}
+
+.game ul li {
+  display: flex;
+  width: 20rem;
+  height: 20rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.game ul li {
+  font-size: 12rem;
+}
+
+.game ul li i {
+  pointer-events: none;
+}
+
+.row1 li,
+.row2 li {
+  border-bottom: 2rem solid var(--color);
+  margin-bottom: -1px;
+}
+
+.col2 {
+  border-left: 2rem solid var(--color);
+  margin-left: -1px;
+  border-right: 2rem solid var(--color);
+  margin-right: -1px;
+}
+
+.cross {
+  color: var(--Xcolor);
+}
+
+.circle {
+  color: var(--Ccolor);
+}
+
+.visibility {
+  display: none;
+}
+.finish {
+  transition: all 3 ease;
+}
+
+.end-game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.end-game .restart {
+  position: fixed;
+  top: 11rem;
+  left: 70rem;
+  font-size: 3rem;
+  padding: 1rem;
+  cursor: pointer;
+  color: var(--Ccolor);
+  transition: all 0.5s ease;
+}
+
+.end-game .restart:hover {
+  color: rgb(3, 82, 78);
+}
+
+.end-game .restart i {
+  pointer-events: none;
+}
+
+.end-game ul {
+  list-style: none;
+}
+
+.draw ul {
+  display: flex;
+  font-size: 10rem;
+}
+
+.draw .cross {
+  font-size: 13rem;
+}
+
+.draw li {
+  padding: 2rem 0.5rem 0rem 0.5rem;
+}
+
+.draw h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--Xcolor);
+  font-size: 4rem;
+}
+
+@media only screen and (max-width: 1600px) {
+  .end-game .restart {
+    left: 40rem;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .end-game .restart {
+    left: 30rem;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .end-game .restart {
+    left: 20rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .end-game .restart {
+    left: 15rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .end-game .restart {
+    left: 10rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .end-game .restart {
+    left: 5rem;
+  }
+}
