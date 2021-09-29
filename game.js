@@ -3,6 +3,7 @@ const restartButton = document.querySelector(".restart");
 const finishsection = document.querySelector(".finish");
 const winsection = document.querySelector(".win");
 const drawsection = document.querySelector(".draw");
+const svg = document.querySelector(".line");
 
 const cross = '<i class="fas fa-times cross">';
 const circle = '<i class="far fa-circle circle">';
@@ -65,7 +66,10 @@ function checkWin() {
   let d3 = game.children[2].children[2].children[0];
   if (d1 != undefined && d2 != undefined && d3 != undefined) {
     if (d1.isEqualNode(d2) && d1.isEqualNode(d3) && d2.isEqualNode(d3)) {
-      isWin(d1.classList);
+      drawLine(d1.classList);
+      setTimeout(() => {
+        isWin(d1.classList);
+      }, 2000);
       return;
     }
   }
@@ -83,6 +87,7 @@ function checkWin() {
 }
 
 function isWin(winner) {
+  svg.classList.add("visibility");
   const winList = document.querySelector(".winList");
   if (winner.contains("cross")) {
     winList.innerHTML = '<i class="fas fa-times cross">';
@@ -100,6 +105,7 @@ function restartGame(e) {
   finishsection.classList.add("visibility");
   drawsection.classList.add("visibility");
   winsection.classList.add("visibility");
+
   game.classList.remove("visibility");
 }
 
@@ -138,4 +144,16 @@ function cleanBoard() {
     c2.innerHTML = "";
     c3.innerHTML = "";
   }
+}
+
+function drawLine(winner) {
+  if (winner.contains("cross")) {
+    svg.children[0].style.stroke = "#545454";
+  } else {
+    svg.children[0].style.stroke = "#f2ebd3";
+  }
+  //const d = "M0,0L600,600";
+  const a = "M50,25L575,575";
+  svg.children[0].attributes[1].nodeValue = a;
+  svg.classList.remove("visibility");
 }
