@@ -45,7 +45,29 @@ function checkWin() {
     let c3 = game.children[2].children[i].children[0];
     if (c1 != undefined && c2 != undefined && c3 != undefined) {
       if (c1.isEqualNode(c2) && c1.isEqualNode(c3) && c2.isEqualNode(c3)) {
-        isWin(c1.classList);
+        switch (i) {
+          case 0:
+            game.removeEventListener("click", play);
+            drawLine(c1.classList, "M100 10L100 580");
+            setTimeout(() => {
+              isWin(c1.classList);
+            }, 2000);
+            break;
+          case 1:
+            game.removeEventListener("click", play);
+            drawLine(c1.classList, "M300 10L300 580");
+            setTimeout(() => {
+              isWin(c1.classList);
+            }, 2000);
+            break;
+          case 2:
+            game.removeEventListener("click", play);
+            drawLine(c1.classList, "M500 10L500 580");
+            setTimeout(() => {
+              isWin(c1.classList);
+            }, 2000);
+            break;
+        }
         return;
       }
     }
@@ -55,7 +77,29 @@ function checkWin() {
     let r3 = game.children[i].children[2].children[0];
     if (r1 != undefined && r2 != undefined && r3 != undefined) {
       if (r1.isEqualNode(r2) && r1.isEqualNode(r3) && r2.isEqualNode(r3)) {
-        isWin(r1.classList);
+        switch (i) {
+          case 0:
+            game.removeEventListener("click", play);
+            drawLine(r1.classList, "M20 90L570 90");
+            setTimeout(() => {
+              isWin(r1.classList);
+            }, 2000);
+            break;
+          case 1:
+            game.removeEventListener("click", play);
+            drawLine(r1.classList, "M20 290L570 290");
+            setTimeout(() => {
+              isWin(r1.classList);
+            }, 2000);
+            break;
+          case 2:
+            game.removeEventListener("click", play);
+            drawLine(r1.classList, "M20 500L570 500");
+            setTimeout(() => {
+              isWin(r1.classList);
+            }, 2000);
+            break;
+        }
         return;
       }
     }
@@ -66,7 +110,8 @@ function checkWin() {
   let d3 = game.children[2].children[2].children[0];
   if (d1 != undefined && d2 != undefined && d3 != undefined) {
     if (d1.isEqualNode(d2) && d1.isEqualNode(d3) && d2.isEqualNode(d3)) {
-      drawLine(d1.classList);
+      game.removeEventListener("click", play);
+      drawLine(d1.classList, "M25,10L580,575");
       setTimeout(() => {
         isWin(d1.classList);
       }, 2000);
@@ -79,7 +124,11 @@ function checkWin() {
   d3 = game.children[2].children[0].children[0];
   if (d1 != undefined && d2 != undefined && d3 != undefined) {
     if (d1.isEqualNode(d2) && d1.isEqualNode(d3) && d2.isEqualNode(d3)) {
-      isWin(d1.classList);
+      game.removeEventListener("click", play);
+      drawLine(d1.classList, "M20,575L575,10");
+      setTimeout(() => {
+        isWin(d1.classList);
+      }, 2000);
       return;
     }
   }
@@ -106,7 +155,11 @@ function restartGame(e) {
   drawsection.classList.add("visibility");
   winsection.classList.add("visibility");
 
+  p1 = true;
+  p2 = false;
+
   game.classList.remove("visibility");
+  game.addEventListener("click", play);
 }
 
 function boardIsFull() {
@@ -146,14 +199,16 @@ function cleanBoard() {
   }
 }
 
-function drawLine(winner) {
+function drawLine(winner, line) {
   if (winner.contains("cross")) {
     svg.children[0].style.stroke = "#545454";
   } else {
     svg.children[0].style.stroke = "#f2ebd3";
   }
-  //const d = "M0,0L600,600";
-  const a = "M50,25L575,575";
-  svg.children[0].attributes[1].nodeValue = a;
+  //const d = "M50,25L575,575";
+  // 1 row = "M30 90L560 90"
+  // D = "M20,575L575,10";
+  // a = "M50,25L575,575";
+  svg.children[0].attributes[1].nodeValue = line;
   svg.classList.remove("visibility");
 }
