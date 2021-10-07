@@ -54,7 +54,7 @@ nav h1 {
   width: 60rem;
   height: 60rem;
   /*border: 0.1rem solid rgb(0, 83, 104);*/
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .game ul {
@@ -94,10 +94,18 @@ nav h1 {
   margin-right: -1px;
 }
 
-.game .cross,
-.game .circle {
-  opacity: 1;
-  transition: opacity 2s;
+.game ul li i,
+.game ul li i {
+  animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .cross {
@@ -173,6 +181,47 @@ nav h1 {
   align-items: center;
   color: var(--Xcolor);
   font-size: 4rem;
+}
+
+.player {
+  display: flex;
+  justify-content: center;
+}
+
+.player .turn {
+  background-color: #f2ebd3;
+  color: black;
+  font-size: 2rem;
+  width: 15rem;
+  height: 4rem;
+  margin: 1rem 2rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 0.3rem solid;
+  border-color: #f2ebd3;
+}
+
+.player .turn i,
+.player .turn p {
+  margin: auto;
+}
+
+.player .Xtime {
+  border-color: rgb(82, 85, 83);
+}
+
+.player .Xtime i {
+  color: var(--Xcolor);
+}
+
+.player .Otime i {
+  color: var(--color);
+}
+
+.player .turn p {
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 1600px) {

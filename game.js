@@ -5,6 +5,12 @@ const winsection = document.querySelector(".win");
 const drawsection = document.querySelector(".draw");
 const svg = document.querySelector(".line");
 
+const Xturn = document.querySelector(".Xtime");
+const Oturn = document.querySelector(".Otime");
+
+const Xwinner = document.querySelector(".Xtime .counter");
+const Owinner = document.querySelector(".Otime .counter");
+
 const cross = '<i class="fas fa-times cross">';
 const circle = '<i class="far fa-circle circle">';
 
@@ -22,16 +28,22 @@ function play(e) {
   if (p1 == true && p2 == false) {
     if (click.children.length == 0) {
       click.innerHTML = cross;
+
       p1 = false;
+      Xturn.style.borderColor = "#f2ebd3";
       p2 = true;
+      Oturn.style.borderColor = "rgb(82, 85, 83)";
 
       setTimeout(checkWin, 100);
     }
   } else {
     if (click.children.length == 0) {
       e.target.innerHTML = circle;
+
       p1 = true;
+      Xturn.style.borderColor = "rgb(82, 85, 83)";
       p2 = false;
+      Oturn.style.borderColor = "#f2ebd3";
 
       setTimeout(checkWin, 100);
     }
@@ -140,8 +152,12 @@ function isWin(winner) {
   const winList = document.querySelector(".winList");
   if (winner.contains("cross")) {
     winList.innerHTML = '<i class="fas fa-times cross">';
+    if (Xwinner.innerText == "-") Xwinner.innerText = "1";
+    else Xwinner.innerText = parseInt(Xwinner.innerText) + 1;
   } else {
     winList.innerHTML = '<i class="far fa-circle circle">';
+    if (Owinner.innerText == "-") Owinner.innerText = "1";
+    else Owinner.innerText = parseInt(Owinner.innerText) + 1;
   }
 
   game.classList.add("visibility");
@@ -156,7 +172,9 @@ function restartGame(e) {
   winsection.classList.add("visibility");
 
   p1 = true;
+  Xturn.style.borderColor = "rgb(82, 85, 83)";
   p2 = false;
+  Oturn.style.borderColor = "#f2ebd3";
 
   game.classList.remove("visibility");
   game.addEventListener("click", play);
