@@ -19,6 +19,7 @@ let p2 = false;
 
 game.addEventListener("click", play);
 restartButton.addEventListener("click", restartGame);
+document.addEventListener("DOMContentLoaded", loadSession);
 
 function play(e) {
   e.stopPropagation();
@@ -160,6 +161,8 @@ function isWin(winner) {
     else Owinner.innerText = parseInt(Owinner.innerText) + 1;
   }
 
+  saveLocalStorage();
+
   game.classList.add("visibility");
   cleanBoard();
   finishsection.classList.remove("visibility");
@@ -229,4 +232,27 @@ function drawLine(winner, line) {
   // a = "M50,25L575,575";
   svg.children[0].attributes[1].nodeValue = line;
   svg.classList.remove("visibility");
+}
+
+function loadSession() {
+  let points;
+  if (sessionStorage.getItem("points") === null) {
+    points = { X: "-", O: "-" };
+  } else {
+    points = JSON.parse(sessionStorage.getItem("points"));
+  }
+  Xwinner.innerText = points["X"];
+  Owinner.innerText = points["O"];
+}
+
+function saveLocalStorage() {
+  let points;
+  if (sessionStorage.getItem("todos") === null) {
+    points = { X: "-", O: "-" };
+  } else {
+    points = JSON.parse(sessionStorage.getItem("points"));
+  }
+  points["X"] = Xwinner.innerText;
+  points["O"] = Owinner.innerText;
+  sessionStorage.setItem("points", JSON.stringify(points));
 }
